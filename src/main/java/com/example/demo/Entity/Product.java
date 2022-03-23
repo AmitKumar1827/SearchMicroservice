@@ -4,9 +4,7 @@ import org.apache.solr.client.solrj.beans.Field;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.solr.core.mapping.SolrDocument;
 
-import javax.persistence.Entity;
 
-@Entity
 @SolrDocument(collection = "products")
 public class Product {
 

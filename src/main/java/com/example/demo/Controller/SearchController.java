@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping
 public class SearchController {
 
     @Autowired
@@ -20,10 +19,10 @@ public class SearchController {
     private ProdService prodService;
 
     @GetMapping (value = "/ProductName")
-    public Optional<Product> getProductByName(@RequestParam("name") String ProdName){
+    public Product getProductByName(@RequestParam("name") String ProdName){
         Optional<Product> prod = productRepo.findById(ProdName);
         if(prod.isPresent()){
-            return prod;
+            return prod.get();
         }else{
             return null;
         }
@@ -42,7 +41,7 @@ public class SearchController {
     }
 
     @PostMapping (value="/addProductToSolr")
-    public void addProd(@RequestParam Product product){
+    public void addProd(@RequestBody Product product){
         prodService.addProduct(product);
     }
 }
